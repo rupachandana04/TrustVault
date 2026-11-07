@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+env/
+
+# Django database
+db.sqlite3
+
+# Uploaded files
+media/
+
+# Environment secrets
+.env
+
+# Editor
+.vscode/

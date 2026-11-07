@@ -1,0 +1,23 @@
+<h2>Share Document</h2>
+
+<h3>{{ document.title }}</h3>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label>Enter Username:</label>
+    <input type="text" name="username" required>
+
+    <br><br>
+
+    <label>Select Permission:</label>
+
+    <select name="permission">
+        <option value="read">Read</option>
+        <option value="edit">Edit</option>
+    </select>
+
+    <br><br>
+
+    <button type="submit">Share Document</button>
+</form>

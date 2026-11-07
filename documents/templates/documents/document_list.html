@@ -1,0 +1,15 @@
+<h2>My Documents</h2>
+
+{% for document in documents %}
+    <div>
+        <h3>{{ document.title }}</h3>
+        <p>Category: {{ document.category }}</p>
+        <p>Uploaded: {{ document.uploaded_at }}</p>
+
+        <a href="{% url 'download_document' document.id %}">
+            Download
+        </a>
+    </div>
+{% empty %}
+    <p>No documents uploaded yet.</p>
+{% endfor %}
