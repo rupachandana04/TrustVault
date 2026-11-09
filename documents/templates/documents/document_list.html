@@ -39,19 +39,17 @@
     <h2>My Documents</h2>
 
     {% for document in documents %}
-        <div class="document">
-            <h3>{{ document.title }}</h3>
-            <p>Category: {{ document.category }}</p>
-            <p>Uploaded: {{ document.uploaded_at }}</p>
-            <a href="{% url 'download_document' document.id %}">
+        <div style="margin-top: 15px;">
+            <a href="{% url 'download_document' document.id %}"
+               style="display:block; margin-bottom:12px;">
                 Download Document
             </a>
 
-            <a href="{% url 'share_document' document.id %}">
+            <a href="{% url 'share_document' document.id %}"
+               style="display:block;">
                 Share Document
             </a>
-            
-        </div>
+         </div>
     {% empty %}
         <p>No documents uploaded yet.</p>
     {% endfor %}
