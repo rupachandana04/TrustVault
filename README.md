@@ -121,7 +121,7 @@ python manage.py migrate
 ### Step 7: Create an admin account
 
 ```bash
-python manage.py createsuperuser
+python manage.py create superuser
 ```
 
 ### Step 8: Run the development server
@@ -141,3 +141,14 @@ Completed and Deployed. Security testing, documentation, and production deployme
 ## 9. Repository
 
 https://github.com/rupachandana04/TrustVault
+
+## 10. Admin Login for Project Evaluation
+
+**Live Website:** https://trustvault-ecbv.onrender.com/
+
+- **Username:Rupa
+- **Password:Siri21234
+
+These credentials are provided for project evaluation purposes.
+
+
