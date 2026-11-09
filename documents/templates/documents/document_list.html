@@ -43,11 +43,14 @@
             <h3>{{ document.title }}</h3>
             <p>Category: {{ document.category }}</p>
             <p>Uploaded: {{ document.uploaded_at }}</p>
-
-            <a class="download"
-               href="{% url 'download_document' document.id %}">
+            <a href="{% url 'download_document' document.id %}">
                 Download Document
             </a>
+
+            <a href="{% url 'share_document' document.id %}">
+                Share Document
+            </a>
+            
         </div>
     {% empty %}
         <p>No documents uploaded yet.</p>
