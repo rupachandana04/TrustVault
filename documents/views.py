@@ -162,18 +162,57 @@ def share_document(request, document_id):
     )
 
 
+
 @login_required
-def shared_documents(request):
-    permissions = DocumentPermission.objects.filter(
-        user=request.user
-    ).select_related('document', 'document__owner')
+def share_document(request, document_id):
+
+    document = get_object_or_404(
+        Document,
+        id=document_id
+    )
+
+    # Allow only admin or document owner
+    if not request.user.is_superuser and document.owner != request.user:
+        return HttpResponseForbidden(
+            "You don't have permission to share this document."
+        )
+
+    if request.method == 'POST':
+
+        username = request.POST.get('username')
+        permission_type = request.POST.get('permission')
+
+        if permission_type not in ['read', 'edit']:
+            return HttpResponse("Invalid permission.")
+
+        user = get_object_or_404(
+            User,
+            username=username
+        )
+
+        if user == request.user:
+            return HttpResponse("You cannot share with yourself.")
+
+        DocumentPermission.objects.update_or_create(
+            document=document,
+            user=user,
+            defaults={'permission': permission_type}
+        )
+
+        create_audit_log(
+            request.user,
+            document,
+            'permission_granted',
+            f'{permission_type} permission granted to {username}'
+        )
+
+        return HttpResponse("Document shared successfully!")
 
     return render(
         request,
-        'documents/document_list.html',
-        {'documents': [p.document for p in permissions]}
+        'documents/share_document.html',
+        {'document': document}
     )
-
 
 
 
