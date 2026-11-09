@@ -1,15 +1,57 @@
-<h2>My Documents</h2>
 
-{% for document in documents %}
-    <div>
-        <h3>{{ document.title }}</h3>
-        <p>Category: {{ document.category }}</p>
-        <p>Uploaded: {{ document.uploaded_at }}</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Documents | TrustVault</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            padding: 35px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+        .document {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+        h2 { color: #172b4d; }
+        .download {
+            display: inline-block;
+            background: #087e91;
+            color: white;
+            padding: 10px 18px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-top: 10px;
+        }
+        .download:hover { background: #066575; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>My Documents</h2>
 
-        <a href="{% url 'download_document' document.id %}">
-            Download
-        </a>
-    </div>
-{% empty %}
-    <p>No documents uploaded yet.</p>
-{% endfor %}
+    {% for document in documents %}
+        <div class="document">
+            <h3>{{ document.title }}</h3>
+            <p>Category: {{ document.category }}</p>
+            <p>Uploaded: {{ document.uploaded_at }}</p>
+
+            <a class="download"
+               href="{% url 'download_document' document.id %}">
+                Download Document
+            </a>
+        </div>
+    {% empty %}
+        <p>No documents uploaded yet.</p>
+    {% endfor %}
+</div>
+</body>
+</html>

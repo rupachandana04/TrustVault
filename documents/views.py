@@ -86,9 +86,11 @@ def upload_document(request):
             'Document uploaded successfully'
         )
 
-        return HttpResponse("Document uploaded successfully!")
-
-    return render(request, 'documents/upload.html')
+        return render(
+    request,
+    'documents/upload.html',
+    {'success_message': 'Document uploaded successfully!'}
+)
 
 @login_required
 def download_document(request, document_id):
@@ -188,7 +190,9 @@ def shared_documents(request):
     ).select_related('document', 'document__owner')
 
     return render(
-        request,
-        'documents/shared_documents.html',
-        {'permissions': permissions}
-    )
+    request,
+    'documents/upload.html',
+    {
+        'success_message': 'Document uploaded successfully!'
+    }
+)
