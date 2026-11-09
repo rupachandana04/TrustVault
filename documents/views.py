@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import redirect
 
 def home(request):
-    return HttpResponse("Welcome to TrustVault - Secure Document Sharing")
+    return redirect('/login/' )
 
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseForbidden
